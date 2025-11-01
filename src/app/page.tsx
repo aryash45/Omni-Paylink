@@ -17,8 +17,8 @@ export default function Home() {
   useEffect(() => {
     // This code only runs on the client, after the component has mounted
     setIsClient(true);
-  }, []); // The empty array [] means this effect runs once on mount
-  // -----------------------------
+  }, []);
+  const solAddress = isSolConnected && solPublicKey ? solPublicKey.toBase58() : undefined;
 
   return (
     <main className="flex min-h-screen flex-col items-center p-12 bg-gray-50">
@@ -70,7 +70,10 @@ export default function Home() {
         )}
       </div>
 
-      <CreateLinkForm />
+      <CreateLinkForm 
+        receiverEvmAddress={evmAddress}
+        receiverSolAddress={solAddress}
+      />
     </main>
   );
 }
